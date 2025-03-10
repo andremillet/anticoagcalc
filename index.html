@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Anticoagulantes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Anticoagulantes</h1>
+
+        <!-- Calculadora CHA₂DS₂-VASc -->
+        <h2>Calculadora CHA₂DS₂-VASc (Risco de AVC)</h2>
+        <form id="cha2ds2Form" class="score-form">
+            <div class="form-group">
+                <label>Insuficiência Cardíaca Congestiva (1 ponto):</label>
+                <select name="chf" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Hipertensão (1 ponto):</label>
+                <select name="hypertension" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Idade ≥ 75 anos (2 pontos) ou 65-74 anos (1 ponto):</label>
+                <select name="ageCha2ds2" required>
+                    <option value="0">Menor que 65 anos</option>
+                    <option value="1">65-74 anos</option>
+                    <option value="2">≥ 75 anos</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Diabetes Mellitus (1 ponto):</label>
+                <select name="diabetes" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Histórico de AVC/AIT/TE (2 pontos):</label>
+                <select name="stroke" required>
+                    <option value="0">Não</option>
+                    <option value="2">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Doença Vascular (1 ponto):</label>
+                <select name="vascular" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Sexo Feminino (1 ponto):</label>
+                <select name="sex" required>
+                    <option value="0">Masculino</option>
+                    <option value="1">Feminino</option>
+                </select>
+            </div>
+            <button type="submit">Calcular CHA₂DS₂-VASc</button>
+        </form>
+        <div id="cha2ds2Result" class="result hidden">
+            <h3>Resultado CHA₂DS₂-VASc</h3>
+            <p id="cha2ds2Score"></p>
+        </div>
+
+        <!-- Calculadora HAS-BLED -->
+        <h2>Calculadora HAS-BLED (Risco de Sangramento)</h2>
+        <form id="hasbledForm" class="score-form">
+            <div class="form-group">
+                <label>Hipertensão Não Controlada (1 ponto):</label>
+                <select name="uncontrolledHypertension" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Função Renal Anormal (1 ponto):</label>
+                <select name="renal" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim (CrCl <50 mL/min)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Função Hepática Anormal (1 ponto):</label>
+                <select name="liver" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Histórico de AVC (1 ponto):</label>
+                <select name="strokeHasbled" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Histórico de Sangramento ou Predisposição (1 ponto):</label>
+                <select name="bleedingHistory" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>INR Lábil (1 ponto):</label>
+                <select name="labileInr" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Idade > 65 anos (1 ponto):</label>
+                <select name="ageHasbled" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Uso de Drogas/Anti-inflamatórios (1 ponto):</label>
+                <select name="drugs" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Consumo de Álcool (1 ponto):</label>
+                <select name="alcohol" required>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <button type="submit">Calcular HAS-BLED</button>
+        </form>
+        <div id="hasbledResult" class="result hidden">
+            <h3>Resultado HAS-BLED</h3>
+            <p id="hasbledScore"></p>
+        </div>
+
+        <!-- Calculadora de Anticoagulantes -->
+        <h2>Calculadora de Anticoagulantes</h2>
+        <form id="anticoagulantForm">
+            <div class="form-group">
+                <label for="condition">Condição Clínica:</label>
+                <select id="condition" name="condition" required>
+                    <option value="">Selecione...</option>
+                    <option value="nvaf">Fibrilação Atrial Não-Valvar (NVAF)</option>
+                    <option value="stroke">AVC Isquêmico ou AIT</option>
+                    <option value="vte">Trombose Venosa (VTE/CVST)</option>
+                    <option value="mechanical">Válvula Mecânica ou Doença Mitral Reumática</option>
+                    <option value="aps">Síndrome Antifosfolípide (APS)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Idade (anos):</label>
+                <input type="number" id="age" name="age" min="18" max="120" required>
+            </div>
+
+            <div class="form-group">
+                <label for="crcl">Clearance de Creatinina (CrCl, mL/min):</label>
+                <input type="number" id="crcl" name="crcl" min="0" max="200" required>
+            </div>
+
+            <div class="form-group">
+                <label for="giBleeding">Histórico de Sangramento GI:</label>
+                <select id="giBleeding" name="giBleeding" required>
+                    <option value="no">Não</option>
+                    <option value="yes">Sim</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="pregnancy">Gravidez:</label>
+                <select id="pregnancy" name="pregnancy" required>
+                    <option value="no">Não</option>
+                    <option value="yes">Sim</option>
+                </select>
+            </div>
+
+            <button type="submit">Calcular Sugestão</button>
+        </form>
+
+        <div id="result" class="result hidden">
+            <h2>Resultado</h2>
+            <p id="suggestion"></p>
+            <p id="considerations"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
